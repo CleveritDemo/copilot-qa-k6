@@ -1,4 +1,4 @@
-# copilot-q-k6
+# copilot-qa-k6
 Este es un practico orientado a poder crear test de performance con el uso de github Copilot. De esta forma podemos crear nuestro marco de trabajo e ir adaptándolo a nuestras necesides con GitHubCopilot
 
 
@@ -37,7 +37,8 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
     Para esto hay que tener un conocimiento previo de GitHub
 1. **Clonar el repositorio remoto:**
    ```bash
-   git clone https://github.com/CleveritDemo/Breadcrumbscopilot-q-k6.git
+  git clone https://github.com/CleveritDemo/copilot-qa-k6.git
+
    ```
 2. **Cambiar la rama:**
    ```bash
