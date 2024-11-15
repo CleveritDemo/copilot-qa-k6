@@ -45,7 +45,7 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
    ```
 3. **Validar que tenemos instalado K6:**
    ```bash
-   Ejemplo: git checkout -b copilot/feature/testcases_<iniciales de nombre y apellido>
+   k6 version
    ``` 
 
 ## Pasos para Realizar el Hands-On
