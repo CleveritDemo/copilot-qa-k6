@@ -794,6 +794,7 @@ Con este paso vamos a realizar la consulta para agregar la configuración de los
   @workspace configura el reporte htmlReport y textSummary:
 1.	En los diferentes test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js 
 2.	El output del reporte se muestre en el directorio reports
+3.  El nombre del reporte que incluya la fecha de ejecución
 
    ```
 
