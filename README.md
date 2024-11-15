@@ -37,7 +37,7 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
     Para esto hay que tener un conocimiento previo de GitHub
 1. **Clonar el repositorio remoto:**
    ```bash
-   git clone https://github.com/CleveritDemo/Breadcrumbscopilot-q-k6.git
+      git clone https://github.com/CleveritDemo/copilot-qa-k6.git
    ```
 2. **Cambiar la rama:**
    ```bash
