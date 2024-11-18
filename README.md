@@ -21,33 +21,46 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
 - **Branch Principal (`main`):**
     - Contiene siempre la versión más actualizada del `README.md`.
 - **Ramas de Hands-On Resuelto (`solved`):**
-    - Para este ejecicio realizaremos la creación de una branch con el prefijo `copilot`.
-    - Ejemplo: `copilot/feature<nombre de la feature realizada>`, la cual será creada a partir de la branch `copilot_practico`.
+    -   git checkout solved
+- **Ramas de Hands-On para realizar la actividad (`copilot_practico_k6`):**
+    - Para este ejecicio nos moveremos a la rama de `copilot_practico_k6`.
+
 
 ## Pre-Requisitos / Instalación
 
 ### Pre-Requisitos
-- [**k6**](https://dl.k6.io/msi/k6-latest-amd64.msi) instalar en windows
-- ```bash brew install k6 ``` instalar en mac
+- Instalar con este isntalador de la pagina oficial:
+    - https://dl.k6.io/msi/k6-latest-amd64.msi
+    - A través de brew en macOs ```bash brew install k6 ```
 - **Git** instalado para el control de versiones.
-- Acceso a las siguientes páginas web para propósitos de prueba:
-- [Test.k6.io](https://test.k6.io/)
+- Acceso a las siguientes endpoints de prueba: 
+1. https://test.k6.io/
+2. https://jsonplaceholder.typicode.com/posts/ 
 
 ### Configuración del Proyecto con GitHub
-    Para esto hay que tener un conocimiento previo de GitHub
 1. **Clonar el repositorio remoto:**
    ```bash
-  git clone https://github.com/CleveritDemo/copilot-qa-k6.git
-
+      git clone https://github.com/CleveritDemo/copilot-qa-k6.git
    ```
-2. **Cambiar la rama:**
+2. **Abrir el IDE:**
+   ```bash
+   Visual Studio Code
+   ``` 
+3. **Abrir desde el IDE el repositorio clonado:**
+  Se visualizará el readme.
+
+4. **Abrir la terminar desde el IDE:**
+ Se debe abrir la terminal desde el IDE utilizado
+
+5. **Cambiar la rama:**
    ```bash
    git checkout copilot_practico_k6
    ```
-3. **Validar que tenemos instalado K6:**
+6. ***Validar que tiene instalado K6***
    ```bash
-   k6 version
-   ``` 
+   K6 version
+   ```
+7. ***Validar la tener instalado la extensión de Github Copilot:***
 
 ## Pasos para Realizar el Hands-On
 
@@ -71,7 +84,7 @@ Necesito crear una estructura de directorios organizados para utilizar en un  pr
 
 ![alt text](image-5.png)
 
-En este resultado podemos observar como son indica como tentativamente puede estar conformado nuestro marco de trabajo para este tipo de pruebas, pero la realidad es que nosotros seguramente tendremos una idea de como queremos la estructura de nuestro proyecto, por lo que va a ser necesario que nosostros tengamos definido esta estructura previamente para poder dar estos datos como parte del promtms que vamos a enviar a copilot.
+En este resultado podemos observar como nos indica como tentativamente puede estar conformado nuestro marco de trabajo para este tipo de pruebas, pero la realidad es que nosotros seguramente tendremos una idea de como queremos la estructura de nuestro proyecto, por lo que va a ser necesario que nosostros tengamos definido esta estructura previamente para poder dar estos datos como parte del promts que vamos a enviar a copilot.
 
 ***
 - #### Ejercicio 2: ***crear la base estructura del proyecto con más especificaciones y utilizando el command `@workspace /new`***
@@ -111,7 +124,7 @@ Utilizaremos la estructura creada anteriormente, para solicitar la generación d
 
 
 Con este paso vamos  indicarle que nos genere un test de tipo smoke, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promtms con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
+Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
 debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
@@ -127,14 +140,13 @@ debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta q
    ```
 
 2. ####  Respuesta de Copilot:
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test se corresponde con lo que hemos solicitado en el promtms, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promtms.
-- Que esta configurado para  1 usuario.
+Como podemos observar la respuesta que nos ha sugerido con el siguiente test se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
+- Podemos detallar que refiere a la URL que le indicamos en el promts.
+- Que está configurado para  1 usuario.
 - Que la duración de la prueba es de 10 segundo tal y como le indicamos.
 - El porcentaje de solicitudes deben completarse en menos de 2s.
-- Que agrego la validacion del status code y que el tiempo de respuesta es de 250ms.
+- Que agrego la validación del status code y que el tiempo de respuesta es de 250ms.
 
-```bash 
 **Código**
 1. Crear el archivo smoke-test.js en la carpeta tests de tu proyecto. Luego, agrega el siguiente código:
 
@@ -182,7 +194,7 @@ Para ejecutar el comando podemos hacer copiar y pegarlo en la terminal o tambien
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
 
 Con este paso vamos  indicarle que nos genere un test de tipo load, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promtms con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
+Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
 debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
@@ -209,9 +221,9 @@ debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta q
 ```
 
 2. ####  Respuesta de Copilot:
-```bash 
+
 **Código**
-1. Crear el archivo smoke-test.js en la carpeta tests de tu proyecto. Luego, agrega el siguiente código:
+Claro, aquí tienes el código para el archivo load-test.js en la carpeta tests de tu proyecto:
 
  ```bash
 import http from 'k6/http';
@@ -253,8 +265,8 @@ export default function () {
     sleep(1); // tiempo de espera de 1 segundo después de la solicitud
 }
 ```
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promtms, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promtms.
+Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
+- Podemos detallar que refiere a la URL que le indicamos en el promts.
 - Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
 - El porcentaje de solicitudes deben completarse en menos de 2s.
 - Que incluya un tiempo de espera entre las solicitudes.
@@ -279,7 +291,7 @@ k6 run performance/tests/load-test.js
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
 
 Con este paso vamos  indicarle que nos genere un test de tipo Stress, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promtms con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
+Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
 debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
@@ -336,8 +348,8 @@ k6 run performance/tests/stress-test.js
    ```
 4. Reflexiones sobre el ejercicio:
 
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promtms, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promtms.
+Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
+- Podemos detallar que refiere a la URL que le indicamos en el promts.
 - Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
 - El porcentaje de solicitudes deben completarse en menos de 2s.
 - Que incluya un tiempo de espera entre las solicitudes.
@@ -347,7 +359,7 @@ Como podemos observar la respuesta que nos ha sugerido con el siguiente test de 
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
 
 Con este paso vamos  indicarle que nos genere un test de tipo Spike, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promtms con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
+Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
 debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
@@ -436,8 +448,8 @@ k6 run performance/tests/spike-test.js
 ```
 4. Reflexiones sobre el ejercicio:
 
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promtms, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promtms.
+Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
+- Podemos detallar que refiere a la URL que le indicamos en el promts.
 - Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
 - Que agrego la validacion del status code y que el tiempo de respuesta es de 200ms.
 
@@ -639,10 +651,11 @@ Solicitaremos a la IA que nos ayude a crear un archivo de datos dentro del direc
 
 1. Enviar el siguiente promts:
   ```bash
-   @workspace crear un archivo de configuración con el nombre config-test-options.js:
-1.  Dentro del directorio config donde puedes definir diferentes configuraciones de prueba para utilizar en los diferentes test que tenemos #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js para:
-2.	Crear una función con el nombre getTestOptions y que tenga una variable para enviarle el tipo de test con las configuraciones de duración por tipo de test.
-3.	Realizar la modificación en cada test de esta constante.
+ @workspace crear un archivo de datos con el nombre data-test.js:
+1.  Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js para:
+2.  Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request
+3.- Crear una constante para agrupar las diferentes urls que se utilizan en los test
+3.  Realizar la modificación en cada test de estas constantes.
    ```
 
 2. ####  Respuesta de Copilot:
