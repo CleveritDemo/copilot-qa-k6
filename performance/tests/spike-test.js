@@ -38,3 +38,4 @@ export default function () {
     });
 
     sleep(1); // 1-second wait after the request
+}
