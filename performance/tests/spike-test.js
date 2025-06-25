@@ -1,17 +1,9 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
+import { getTestOptions } from '../config/config-test-options.js';
 
-export const options = {
-    stages: [
-        { duration: '60s', target: 20 }, // 60 seconds duration with a target of 20 users
-        { duration: '30s', target: 0 },  // 30 seconds duration reducing to 0 users
-        { duration: '60s', target: 20 }, // 60 seconds duration maintaining 20 users
-        { duration: '30s', target: 0 },  // 30 seconds duration reducing to 0 users
-        { duration: '60s', target: 20 }, // 60 seconds duration maintaining 20 users
-        { duration: '30s', target: 0 },  // 30 seconds duration reducing to 0 users
-    ],
-};
+export const options = getTestOptions('spike');
 
 export default function () {
     const userId = randomIntBetween(1, 100);

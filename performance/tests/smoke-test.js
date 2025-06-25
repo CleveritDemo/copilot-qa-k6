@@ -1,13 +1,8 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
+import { getTestOptions } from '../config/config-test-options.js';
 
-export const options = {
-    vus: 1, // 1 user
-    duration: '60s', // 60 seconds duration
-    thresholds: {
-        http_req_duration: ['p(95)<2000'], // 95% of requests must complete in less than 2s
-    },
-};
+export const options = getTestOptions('smoke');
 
 export default function () {
     const res = http.get('https://test.k6.io');
