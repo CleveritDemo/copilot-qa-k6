@@ -16,3 +16,4 @@ export default function () {
         'response time is less than 250ms': (r) => r.timings.duration < 250, // response time less than 250ms
     });
     sleep(1); // 1-second wait after the request
+};
