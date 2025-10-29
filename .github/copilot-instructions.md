@@ -18,8 +18,8 @@ The repository will contain a project that uses grafana K6 as tool to build mult
 
 ## Instructions for Copilot
 
-- Allways use best practices for k6 performance testing.
-- Provide clear and concise explanaitions.
+- Always use best practices for k6 performance testing.
+- Provide clear and concise explanations.
 - When user asks for markdown files, provide them with proper formatting and escape characters if needed.
 
 ## Project Structure
@@ -30,3 +30,4 @@ The repository will contain a project that uses grafana K6 as tool to build mult
     - `config`: Directory for configuration files.
     - `reports`: Directory for storing test reports.
 
+Note: Project files will be created later by user or by Copilot based on user requests.
