@@ -21,6 +21,7 @@ The repository will contain a project that uses grafana K6 as tool to build mult
 - Always use best practices for k6 performance testing.
 - Provide clear and concise explanations.
 - When user asks for markdown files, provide them with proper formatting and escape characters if needed.
+- Avoid suggest code with syntax errors.
 
 ## Project Structure
 
