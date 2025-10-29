@@ -22,8 +22,8 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
     - Contiene siempre la versión más actualizada del `README.md`.
 - **Ramas de Hands-On Resuelto (`solved`):**
     -   git checkout solved
-- **Ramas de Hands-On para realizar la actividad (`copilot_practico_k6`):**
-    - Para este ejecicio nos moveremos a la rama de `copilot_practico_k6`.
+- **Ramas de Hands-On para realizar la actividad (`copilot-practice`):**
+    - Para este ejecicio nos moveremos a la rama de `copilot-practice`.
 
 
 ## Pre-Requisitos / Instalación
@@ -54,7 +54,7 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
 
 5. **Cambiar la rama:**
    ```bash
-   git checkout copilot_practico_k6
+   git checkout copilot-practice
    ```
 6. ***Validar que tiene instalado K6***
    ```bash
