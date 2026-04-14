@@ -644,8 +644,8 @@ Solicitaremos a la IA que nos ayude a crear un archivo de datos dentro del direc
  Crear un archivo de datos con el nombre "data-test.js":
 1.  Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test: "smoke-test.js , load-test.js, stress-test.js, spike-test.js" para:
 2.  Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request
-3.- Crear una constante para agrupar las diferentes urls que se utilizan en los test
-3.  Realizar la modificación en cada test de estas constantes.
+3.  Crear una constante para agrupar las diferentes urls que se utilizan en los test
+4.  Realizar la modificación en cada test de estas constantes.
    ```
 
 2. ####  Respuesta de Copilot:
