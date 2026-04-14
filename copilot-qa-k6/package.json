@@ -1,0 +1,18 @@
+{
+  "name": "copilot-qa-k6",
+  "version": "1.0.0",
+  "description": "A performance testing project using k6 for web applications.",
+  "main": "performance/tests/load-test.js",
+  "scripts": {
+    "load-test": "k6 run performance/tests/load-test.js",
+    "spike-test": "k6 run performance/tests/spike-test.js",
+    "soak-test": "k6 run performance/tests/soak-test.js",
+    "stress-test": "k6 run performance/tests/stress-test.js"
+  },
+  "dependencies": {
+    "k6": "^0.34.0"
+  },
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -1,0 +1,28 @@
+{
+  "testDuration": "30s",
+  "virtualUsers": 100,
+  "rampUpTime": "10s",
+  "testOptions": {
+    "load": {
+      "duration": "30s",
+      "users": 100
+    },
+    "stress": {
+      "duration": "1m",
+      "users": 200
+    },
+    "soak": {
+      "duration": "1h",
+      "users": 50
+    },
+    "spike": {
+      "duration": "10s",
+      "users": 500
+    }
+  },
+  "baseURL": "https://example.com",
+  "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN_HERE"
+  }
+}
