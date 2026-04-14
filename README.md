@@ -90,12 +90,12 @@ En este resultado podemos observar como nos indica como tentativamente puede est
 - #### Ejercicio 2: ***crear la base estructura del proyecto con más especificaciones y utilizando el command `@workspace /new`***
  Objetivo del ejercicio: 
 Con este ejercicio vamos a realizar la consulta a nuestro chat de copilot y analizar la respuesta nos devuelve copilot y detallamos que directorios debe de tener el proyecto.
-Para realizar este ejercicio estaremos empleando los commands de Github Copilot `@workspace` y `/new`.
+Para realizar este ejercicio estaremos empleando el comando de Github Copilot `/new`.
  
 
  1. Enviar el siguiente promts
 ```bash
-@workspace /new Necesito crear una estructura de directorios organizados para generar un proyecto de performance con k6 de la siguiente forma:
+/new Necesito crear una estructura de directorios organizados para generar un proyecto de performance con k6 de la siguiente forma:
     1. performance: Carpeta principal del proyecto			
     2. config: Carpeta donde se guardaran las opciones de prueba.
     3. data: Carpeta donde se guardaran los archivos de datos.
@@ -124,13 +124,11 @@ Utilizaremos la estructura creada anteriormente, para solicitar la generación d
 
 
 Con este paso vamos  indicarle que nos genere un test de tipo smoke, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
 
   ```bash
-    @workspace Crea un test con el nombre smoke-test.js en k6 para un prueba de humo que:
+   Crea un test con el nombre smoke-test.js en k6 para un prueba de humo que:
     1. Sea sobre la siguiente url: https://test.k6.io
     2. Configura 1 usuario
     3. La duración debe ser de 60 segundos
@@ -172,12 +170,12 @@ export default function () {
 }
    ```
 
-#### 2.3 ***Generamos el comando de ejecución del test usando el @workspace y el #file***
+#### 2.3 ***Generamos el comando de ejecución del test usando la referencia al archivo***
 Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
 
 1. Enviar el siguiente promts:  
   ```bash
-    @workspace Genera el comando de ejecución del archivo #file:smoke-test.js
+    Genera el comando de ejecución del archivo "smoke-test.js"
    ```
 
 2. ####  Respuesta de Copilot:
@@ -192,15 +190,12 @@ Para ejecutar el comando podemos hacer copiar y pegarlo en la terminal o tambien
 
 ### 2.4 **Creación de Casos de prueba de tipo Load Test:**
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
-
 Con este paso vamos  indicarle que nos genere un test de tipo load, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
 
   ```bash
-@workspace Crea un test con el nombre load -test.js en k6 que:
+Crea un test con el nombre load -test.js en k6 que:
       1. Configure las siguientes etapas:
       2. 60 segundos de duración con un objetivo de 10 usuarios.
       3. 120 segundos de duración manteniendo 10 usuarios.
@@ -279,7 +274,7 @@ Con este paso vamos a generar solicitar a copilot que nos genere el comando de e
 
 1. [x] Enviar el siguiente promts:
   ```bash
-    @workspace Genera el comando de ejecución del archivo #file:load-test.js
+    Genera el comando de ejecución del archivo "load-test.js"
    ```
 
 2. [x] Respuesta de Copilot:
@@ -289,15 +284,12 @@ k6 run performance/tests/load-test.js
 
 ### 2.5 **Creación de Casos de prueba de tipo Stress Test:**
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
-
 Con este paso vamos  indicarle que nos genere un test de tipo Stress, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
 
   ```bash
-@workspace Crea un test con el nombre stress-test.js en k6 que:
+Crea un test con el nombre "stress-test.js" en k6 que:
 1. Configure las siguientes etapas:
     - 60 segundos de duración con un objetivo de 20 usuarios.
     - 180 segundos de duración manteniendo 20 usuarios.
@@ -336,11 +328,11 @@ export default function () {
 }
 ```
 
-3. Generamos el comando de ejecución del test usando el @workspace y el #file
+3. Generamos el comando de ejecución del test
 Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
 1. [x] Enviar el siguiente promts:
   ```bash
-    @workspace Genera el comando de ejecución del archivo #file:stress-test.js
+    Genera el comando de ejecución del archivo "stress-test.js"
    ```
 2. [x] Respuesta de Copilot:
  ```bash
@@ -359,13 +351,11 @@ Como podemos observar la respuesta que nos ha sugerido con el siguiente test de 
 Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
 
 Con este paso vamos  indicarle que nos genere un test de tipo Spike, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
 
 1. Enviar el siguiente promts:
 
   ```bash
-@workspace Crea un test con el nombre spike -test.js en k6 que:
+Crea un test con el nombre "spike -test.js" en k6 que:
 1.	Configure las siguientes etapas:
 2.	60 segundos de duración con un objetivo de 20 usuarios.
 3.	30 segundos de duración reduciendo 0 usuarios.
@@ -436,11 +426,11 @@ export default function () {
 }
 ```
 
-3. Generamos el comando de ejecución del test usando el @workspace y el #file
+3. Generamos el comando de ejecución del test
 Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
 1. [x] Enviar el siguiente promts:
   ```bash
-    @workspace Genera el comando de ejecución del archivo #file:spike-test.js
+    Genera el comando de ejecución del archivo "spike-test.js"
    ```
 2. [x] Respuesta de Copilot:
  ```bash
@@ -461,8 +451,8 @@ También le solicitaremos que nos realice la modificación dentro de los test pa
 
 1. Enviar el siguiente promts:
   ```bash
-   @workspace crear un archivo de configuración con el nombre config-test-options.js:
-1.  Dentro del directorio config donde puedes definir diferentes configuraciones de prueba para utilizar en los diferentes test que tenemos #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js para:
+   Crea un archivo de configuración con el nombre "config-test-options.js":
+1.  Dentro del directorio config donde puedes definir diferentes configuraciones de prueba para utilizar en los diferentes test que tenemos "smoke-test.js, load-test.js, stress-test.js, spike-test.js" para:
 2.	Crear una función con el nombre getTestOptions y que tenga una variable para enviarle el tipo de test con las configuraciones de duración por tipo de test.
 3.	Realizar la modificación en cada test de esta constante.
    ```
@@ -651,8 +641,8 @@ Solicitaremos a la IA que nos ayude a crear un archivo de datos dentro del direc
 
 1. Enviar el siguiente promts:
   ```bash
- @workspace crear un archivo de datos con el nombre data-test.js:
-1.  Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js para:
+ Crear un archivo de datos con el nombre "data-test.js":
+1.  Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test: "smoke-test.js , load-test.js, stress-test.js, spike-test.js" para:
 2.  Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request
 3.- Crear una constante para agrupar las diferentes urls que se utilizan en los test
 3.  Realizar la modificación en cada test de estas constantes.
@@ -660,9 +650,9 @@ Solicitaremos a la IA que nos ayude a crear un archivo de datos dentro del direc
 
 2. ####  Respuesta de Copilot:
 
-@workspace crear un archivo de datos con el nombre `data-test.js`:
+Crear un archivo de datos con el nombre `data-test.js`:
 
-1. Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test `#file:smoke-test.js` `#file:load-test.js` `#file:stress-test.js` `#file:spike-test.js`
+1. Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test `smoke-test.js` `load-test.js` `stress-test.js` `spike-test.js`
 2. Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request 
 3. Crear una constante para agrupar las diferentes urls que se utilizan en los test
 Realizar la modificación en cada test de estas constantes.
@@ -805,8 +795,8 @@ Utilizaremos los test creados para configurar los reportes mediante la utilizaci
 Con este paso vamos a realizar la consulta para agregar la configuración de los reportes.
   
   ```bash
-  @workspace configura el reporte htmlReport y textSummary:
-1.	En los diferentes test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js 
+  Configura el reporte htmlReport y textSummary:
+1.	En los diferentes test "smoke-test.js, load-test.js, stress-test.js, spike-test.js"
 2.	El output del reporte se muestre en el directorio reports
 3.  El nombre del reporte que incluya la fecha de ejecución
 
