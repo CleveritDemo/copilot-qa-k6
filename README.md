@@ -195,7 +195,7 @@ Con este paso vamos  indicarle que nos genere un test de tipo load, para lo cual
 1. Enviar el siguiente promts:
 
   ```bash
-Crea un test con el nombre load -test.js en k6 que:
+Crea un test con el nombre load-test.js en k6 que:
       1. Configure las siguientes etapas:
       2. 60 segundos de duración con un objetivo de 10 usuarios.
       3. 120 segundos de duración manteniendo 10 usuarios.
