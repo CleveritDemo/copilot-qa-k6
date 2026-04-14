@@ -13,7 +13,7 @@ Adoption Copilot es una herramienta diseñada para facilitar y automatizar proce
 3. Generaremos un archivo de datos con las opciones de prueba para utilizar en los diferentes test que tenemos
 4. Generaremos un comando de ejecución para cada uno de los test de rendimiento
 5. Generaremos un reporte de pruebas de rendimiento en K6
-6. Utilizaremos los commands de GitHub Copilot para la creación de los test de rendimiento @workspace y #file
+6. Utilizaremos los commands de GitHub Copilot para la creación de los test de rendimiento /new
 
 
 ## Políticas de Branching para resolver los ejercicios del programa Adoption Copilot
