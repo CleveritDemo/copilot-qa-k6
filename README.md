@@ -87,7 +87,7 @@ Necesito crear una estructura de directorios organizados para utilizar en un  pr
 En este resultado podemos observar como nos indica como tentativamente puede estar conformado nuestro marco de trabajo para este tipo de pruebas, pero la realidad es que nosotros seguramente tendremos una idea de como queremos la estructura de nuestro proyecto, por lo que va a ser necesario que nosostros tengamos definido esta estructura previamente para poder dar estos datos como parte del promts que vamos a enviar a copilot.
 
 ***
-- #### Ejercicio 2: ***crear la base estructura del proyecto con más especificaciones y utilizando el command `@workspace /new`***
+- #### Ejercicio 2: ***crear la base estructura del proyecto con más especificaciones y utilizando el command /new`***
  Objetivo del ejercicio: 
 Con este ejercicio vamos a realizar la consulta a nuestro chat de copilot y analizar la respuesta nos devuelve copilot y detallamos que directorios debe de tener el proyecto.
 Para realizar este ejercicio estaremos empleando el comando de Github Copilot `/new`.
