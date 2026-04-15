@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "username": "testuser",
+      "password": "password123"
+    }
+  ],
+  "apiEndpoints": {
+    "login": "https://example.com/api/login",
+    "getData": "https://example.com/api/data",
+    "submitData": "https://example.com/api/submit"
+  },
+  "testParameters": {
+    "testDuration": "60s",
+    "virtualUsers": 100
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "testDuration": "30s",
+  "virtualUsers": 100,
+  "rampUpTime": "10s",
+  "testScenarios": {
+    "loadTest": {
+      "duration": "30s",
+      "vus": 100
+    },
+    "stressTest": {
+      "duration": "1m",
+      "vus": 200,
+      "maxVus": 500
+    },
+    "soakTest": {
+      "duration": "1h",
+      "vus": 50
+    },
+    "spikeTest": {
+      "duration": "10m",
+      "initialVus": 10,
+      "spikeVus": 100,
+      "spikeDuration": "1m"
+    }
+  },
+  "apiEndpoints": {
+    "login": "/api/login",
+    "fetchData": "/api/data",
+    "submitForm": "/api/submit"
+  }
+}
