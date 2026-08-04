@@ -118,9 +118,9 @@ git checkout copilot_practico_k6
 
 | Rama                      | Propósito                                                       |
 | ------------------------- | -------------------------------------------------------------- |
-| `main`                    | Contiene siempre la versión más actualizada del `README`.      |
+| `updated-main`                    | Contiene siempre la versión más actualizada del `README`.      |
 | `solved`                  | Hands-on ya resuelto — `git checkout solved`.                 |
-| `copilot_practico_k6`     | Rama de trabajo para realizar las actividades.                 |
+| `nombre-apellido`     | Rama de trabajo para realizar las actividades.                 |
 
 ---
 
