@@ -1,156 +1,214 @@
-# copilot-qa-k6
-Este es un practico orientado a poder crear test de performance con el uso de github Copilot. De esta forma podemos crear nuestro marco de trabajo e ir adaptándolo a nuestras necesides con GitHubCopilot
+<div align="center">
 
+  # 🚀 Copilot QA — Framework de Pruebas de Rendimiento con k6
 
-# Adoption Copilot QA
+  [![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=for-the-badge&logo=githubcopilot&logoColor=white)](https://github.com/features/copilot)
+  [![Grafana k6](https://img.shields.io/badge/Grafana_k6-7D64FF?style=for-the-badge&logo=k6&logoColor=white)](https://k6.io/)
+  [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+  [![Visual Studio Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/)
 
-## Descripción
-Adoption Copilot es una herramienta diseñada para facilitar y automatizar procesos de prueba y desarrollo, integrando inteligencia artificial a través de GitHub Copilot, para mejorar la eficiencia y precisión en la creación de casos de prueba de rendimiento y escenarios de automatización. Esta herramienta está orientada a testers que buscan optimizar los tiempos al momento de tener que crear script de pruebas sobre rendimientos de aplicaciones.
+  **🌐 Idioma:** **Español** · [English](./README_ENG.md)
 
-## Alcance del Programa
-1. Crearemos un framework de pruebas de rendimiento en K6 desde 0
-2. Crearemos 4 test de rendimiento (Smoke, Load, Stress, Spike) para K6
-3. Generaremos un archivo de datos con las opciones de prueba para utilizar en los diferentes test que tenemos
-4. Generaremos un comando de ejecución para cada uno de los test de rendimiento
-5. Generaremos un reporte de pruebas de rendimiento en K6
-6. Utilizaremos los commands de GitHub Copilot para la creación de los test de rendimiento @workspace y #file
+</div>
 
+---
 
-## Políticas de Branching para resolver los ejercicios del programa Adoption Copilot
+**Esta capacitación práctica** te enseña a **crear un framework de pruebas de rendimiento en k6 desde cero** usando **GitHub Copilot**. Crearás los cuatro tipos de pruebas de rendimiento canónicos (**Smoke, Load, Stress, Spike**), centralizarás las opciones de prueba y los datos de las solicitudes en archivos reutilizables, y generarás **reportes HTML y de texto** — todo impulsado por prompts de Copilot Chat.
 
-- **Branch Principal (`main`):**
-    - Contiene siempre la versión más actualizada del `README.md`.
-- **Ramas de Hands-On Resuelto (`solved`):**
-    -   git checkout solved
-- **Ramas de Hands-On para realizar la actividad (`copilot-practice`):**
-    - Para este ejecicio nos moveremos a la rama de `copilot-practice`.
+> Para más información sobre las herramientas usadas en este taller, consulta la documentación oficial:
+>
+> - [GitHub Copilot Chat](https://docs.github.com/en/copilot/how-tos/use-copilot-chat)
+> - [Documentación de Grafana k6](https://grafana.com/docs/k6/latest/)
+> - [Tipos de prueba en k6 (Smoke, Load, Stress, Spike)](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
+> - [Opciones y Thresholds de k6](https://grafana.com/docs/k6/latest/using-k6/thresholds/)
+> - [Reporter HTML de k6](https://github.com/benc-uk/k6-reporter)
 
+---
 
-## Pre-Requisitos / Instalación
+## 📋 Tabla de Contenidos
 
-### Pre-Requisitos
-- Instalar con este isntalador de la pagina oficial:
-    - https://dl.k6.io/msi/k6-latest-amd64.msi
-    - A través de brew en macOs ```bash brew install k6 ```
-- **Git** instalado para el control de versiones.
-- Acceso a las siguientes endpoints de prueba: 
-1. https://test.k6.io/
-2. https://jsonplaceholder.typicode.com/posts/ 
+1. [🎯 Objetivos de aprendizaje](#-objetivos-de-aprendizaje)
+2. [⏱️ Duración estimada](#️-duración-estimada)
+3. [📚 Requisitos previos](#-requisitos-previos)
+4. [🌿 Política de ramas](#-política-de-ramas)
+5. [🧩 Variables de GitHub Copilot utilizadas](#-variables-de-github-copilot-utilizadas)
+6. [🗂️ Paso 1. Crear la estructura base del proyecto](#️-paso-1-crear-la-estructura-base-del-proyecto)
+7. [💨 Paso 2. Smoke test (Prueba de humo)](#-paso-2-smoke-test-prueba-de-humo)
+8. [📈 Paso 3. Load test (Prueba de carga)](#-paso-3-load-test-prueba-de-carga)
+9. [🔥 Paso 4. Stress test (Prueba de estrés)](#-paso-4-stress-test-prueba-de-estrés)
+10. [⚡ Paso 5. Spike test (Prueba de picos)](#-paso-5-spike-test-prueba-de-picos)
+11. [⚙️ Paso 6. Archivo de configuración central](#️-paso-6-archivo-de-configuración-central)
+12. [🗃️ Paso 7. Archivo de datos](#️-paso-7-archivo-de-datos)
+13. [📊 Paso 8. Configurar reportes](#-paso-8-configurar-reportes)
+14. [🧭 Reflexiones finales](#-reflexiones-finales)
 
-### Configuración del Proyecto con GitHub
-1. **Clonar el repositorio remoto:**
-   ```bash
-      git clone https://github.com/CleveritDemo/copilot-qa-k6.git
-   ```
-2. **Abrir el IDE:**
-   ```bash
-   Visual Studio Code
-   ``` 
-3. **Abrir desde el IDE el repositorio clonado:**
-  Se visualizará el readme.
+---
 
-4. **Abrir la terminar desde el IDE:**
- Se debe abrir la terminal desde el IDE utilizado
+## 🎯 Objetivos de aprendizaje
 
-5. **Cambiar la rama:**
-   ```bash
-   git checkout copilot-practice
-   ```
-6. ***Validar que tiene instalado K6***
-   ```bash
-   K6 version
-   ```
-7. ***Validar la tener instalado la extensión de Github Copilot:***
+Al finalizar este taller serás capaz de:
 
-## Pasos para Realizar el Hands-On
+- ✅ Generar una **estructura de proyecto k6** organizada con GitHub Copilot usando la variable `#new`.
+- ✅ Crear cuatro tipos de pruebas de rendimiento — **Smoke, Load, Stress, Spike** — a partir de prompts en lenguaje natural.
+- ✅ Generar el **comando de ejecución** de cada prueba usando `#codebase` y `#file`.
+- ✅ Centralizar las opciones de prueba en un **archivo de configuración** (`config-test-options.js`).
+- ✅ Centralizar los cuerpos de las solicitudes y las URLs en un **archivo de datos** (`data-test.js`).
+- ✅ Producir **reportes HTML y de texto** con la fecha de ejecución en el directorio `reports/`.
 
-### 1. **Configuración Inicial:**
-Asegúrate de haber completado todos los pasos de instalación y pre-requisitos.
+> [!TIP]
+> `SIEMPRE` revisá el código que sugiere Copilot. No todos los resultados son correctos o útiles para tus necesidades — tu conocimiento del dominio es lo que convierte una buena sugerencia en una gran prueba.
 
-### 2. **Pasos:**
+---
 
-***
-### 2.1 **Creación la estructura base del proyecto:**
-Crearemos el proyecto de pruebas de performance para generar casos de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
-Con este ejercicio vamos a solicitar en nuestro chat de GitHub Copilot la generación de un framework de pruebas de performance en K6 y estaremos analizando la respuesta que nos retorna la IA respecto a esta solicitud.
-***
-- #### Ejercicio 1: ***crear la estructura del proyecto***
-1.  #### Enviar el siguiente promts
+## ⏱️ Duración estimada
+
+| Bloque                                          | Tiempo      |
+| ----------------------------------------------- | ----------- |
+| 📚 Configuración y requisitos previos           | 10 min      |
+| 🗂️ Paso 1 - Estructura del proyecto             | 5 min       |
+| 💨 Paso 2 - Smoke test                           | 10 min      |
+| 📈 Paso 3 - Load test                            | 10 min      |
+| 🔥 Paso 4 - Stress test                          | 10 min      |
+| ⚡ Paso 5 - Spike test                           | 10 min      |
+| ⚙️ Paso 6 - Archivo de configuración            | 10 min      |
+| 🗃️ Paso 7 - Archivo de datos                     | 10 min      |
+| 📊 Paso 8 - Reportes                             | 10 min      |
+| **Total**                                       | **~85 min** |
+
+---
+
+## 📚 Requisitos previos
+
+Antes de comenzar, asegurate de tener:
+
+- [Grafana k6](https://grafana.com/docs/k6/latest/set-up/install-k6/) instalado:
+  - Windows (instalador oficial): <https://dl.k6.io/msi/k6-latest-amd64.msi>
+  - macOS (Homebrew): `brew install k6`
+- [Git](https://git-scm.com/downloads) instalado para el control de versiones.
+- [Visual Studio Code](https://code.visualstudio.com/).
+- [GitHub Copilot](https://github.com/features/copilot) activo en VS Code (extensión + suscripción).
+- Acceso a los siguientes endpoints de prueba:
+  - <https://test.k6.io/>
+  - <https://jsonplaceholder.typicode.com/posts/>
+
+Verificá tu instalación:
+
 ```bash
-Necesito crear una estructura de directorios organizados para utilizar en un  proyecto en k6
-```
-2. ####  Respuesta de Copilot:
-`SIEMPRE` es necesario revisar las soluciones que nos brinda como resultado la IA, porque no todos los resultados son correctos o útiles para nuestras necesidades. En este caso, como podemos observar, la escructura del proyecto la estructura del proyecto creado y que tenga sentido y que los archivos propuestos sean los que necesitamos para realizar las pruebas de performance.
-
-![alt text](image-5.png)
-
-En este resultado podemos observar como nos indica como tentativamente puede estar conformado nuestro marco de trabajo para este tipo de pruebas, pero la realidad es que nosotros seguramente tendremos una idea de como queremos la estructura de nuestro proyecto, por lo que va a ser necesario que nosostros tengamos definido esta estructura previamente para poder dar estos datos como parte del promts que vamos a enviar a copilot.
-
-***
-- #### Ejercicio 2: ***crear la base estructura del proyecto con más especificaciones y utilizando el command `@workspace /new`***
- Objetivo del ejercicio: 
-Con este ejercicio vamos a realizar la consulta a nuestro chat de copilot y analizar la respuesta nos devuelve copilot y detallamos que directorios debe de tener el proyecto.
-Para realizar este ejercicio estaremos empleando los commands de Github Copilot `@workspace` y `/new`.
- 
-
- 1. Enviar el siguiente promts
-```bash
-@workspace /new Necesito crear una estructura de directorios organizados para generar un proyecto de performance con k6 de la siguiente forma:
-    1. performance: Carpeta principal del proyecto			
-    2. config: Carpeta donde se guardaran las opciones de prueba.
-    3. data: Carpeta donde se guardaran los archivos de datos.
-    4. reports: Carpeta donde se guardarán los reportes.    
-    5. tests: Carpeta donde se guardarán los test.
+k6 version
+git --version
+code --version
 ```
 
-2. ####  Respuesta de Copilot:
-Luego de revisar la respuesta, procedemos a crear el framework sugerido en la respuesta haciendo click en el botón de `Crear área de trabajo`
-    
-![alt text](image-3.png)
+### Configuración del proyecto con GitHub
 
-3. Crear el proyecto dentro de la misma ruta o carpeta donde tenemos el readme de este practico.
+```bash
+# 1. Clonar el repositorio remoto
+git clone https://github.com/CleveritDemo/copilot-qa-k6.git
 
-![alt text](image-4.png)
+# 2. Abrir la carpeta en Visual Studio Code y abrir la terminal integrada
 
-Claro, aquí tienes una propuesta de estructura de directorios para un proyecto de pruebas de rendimiento k6:
-Hay que darle clic en `**Crear espacio de trabajo**` y se selecciona la carpeta donde se va crear el proyecto
+# 3. Cambiar a la rama de práctica
+git checkout copilot_practico_k6
+```
 
-4. #### Reflexiones sobre el ejercicio:
-Como podemos observar para esta consulta, el resultado de la misma fue el esperado por nosotros ya que al revisar la respuesta, nos retorno los directorios con la estrutura deseada. Es importante destacar que va a depender de lo que nosotros tengamos definido para nuestra base de proyecto y de como queramos implementarlo, lo que conlleva a que si o si el conocimiento de la persona que realiza esta actividad debe estar presente para que pueda asegurarse de que cada respuesta cumpla con la necesidad.
-Es importante acotar que para este ejecicio nos apoyamos del commands @workspace y de /new, cualidad que nos permite obtener en la respuesta la creación del framework solicitado y nos genero el botón de acceso a crear el framework en la carpeta donde se encuentra el readme de este practico.
+---
 
-### 2.2 **Creación de Casos de Prueba (Smoke Test):**
-Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
+## 🌿 Política de ramas
 
+| Rama                      | Propósito                                                       |
+| ------------------------- | -------------------------------------------------------------- |
+| `main`                    | Contiene siempre la versión más actualizada del `README`.      |
+| `solved`                  | Hands-on ya resuelto — `git checkout solved`.                 |
+| `copilot_practico_k6`     | Rama de trabajo para realizar las actividades.                 |
 
-Con este paso vamos  indicarle que nos genere un test de tipo smoke, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
+---
 
-1. Enviar el siguiente promts:
+## 🧩 Variables de GitHub Copilot utilizadas
 
-  ```bash
-    @workspace Crea un test con el nombre smoke-test.js en k6 para un prueba de humo que:
-    1. Sea sobre la siguiente url: https://test.k6.io
-    2. Configura 1 usuario
-    3. La duración debe ser de 60 segundos
-    4. El 95% de las solicitudes deben completarse en menos de 2s 
-    5. Validamos el código de respuesta sea 200 
-    6. El tiempo de respuesta inferior a 250ms.
-   ```
+Este taller usa las **variables de chat** modernas de GitHub Copilot en lugar del participante heredado `@workspace`:
 
-2. ####  Respuesta de Copilot:
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promts.
-- Que está configurado para  1 usuario.
-- Que la duración de la prueba es de 10 segundo tal y como le indicamos.
-- El porcentaje de solicitudes deben completarse en menos de 2s.
-- Que agrego la validación del status code y que el tiempo de respuesta es de 250ms.
+| Variable     | Qué hace                                                                                        |
+| ------------ | ----------------------------------------------------------------------------------------------- |
+| `#new`       | Genera (scaffolding) una **nueva estructura de proyecto/workspace** a partir de tu descripción.  |
+| `#codebase`  | Le da a Copilot **todo el workspace como contexto** para crear o modificar archivos.            |
+| `#file`      | Referencia un **archivo específico** (por ej. `#file:smoke-test.js`) para que Copilot trabaje sobre él. |
 
-**Código**
-1. Crear el archivo smoke-test.js en la carpeta tests de tu proyecto. Luego, agrega el siguiente código:
+El ciclo típico para cada prueba se ve así:
 
- ```bash
+```mermaid
+flowchart LR
+    A[Definir requisitos] --> B[Prompt a Copilot Chat]
+    B --> C[Revisar código generado]
+    C --> D[Ejecutar con k6]
+    D --> E[Generar reporte]
+```
+
+---
+
+## 🗂️ Paso 1. Crear la estructura base del proyecto
+
+**Objetivo:** crear una estructura de directorios organizada para ejecutar pruebas de rendimiento, usando GitHub Copilot para generar el framework y analizando su respuesta.
+
+### 1.1 Primer intento — un prompt genérico
+
+Abrí Copilot Chat y enviá un prompt simple, sin especificaciones:
+
+```text
+Necesito crear una estructura de directorios organizada para utilizar en un proyecto en k6
+```
+
+> [!NOTE]
+> La respuesta es una propuesta *tentativa*. Suele tener sentido, pero rara vez coincide con el layout exacto que tenés en mente. Por eso el siguiente paso define la estructura de forma explícita.
+
+### 1.2 Scaffolding con la variable `#new`
+
+Usá la variable **`#new`** para que Copilot genere el proyecto y ofrezca un botón **Crear área de trabajo**. Enviá el siguiente prompt:
+
+```text
+#new Necesito crear una estructura de directorios organizada para generar un proyecto de performance con k6 de la siguiente forma:
+    1. performance: Carpeta principal del proyecto
+    2. config: Carpeta donde se guardarán las opciones de prueba.
+    3. data: Carpeta donde se guardarán los archivos de datos.
+    4. reports: Carpeta donde se guardarán los reportes.
+    5. tests: Carpeta donde se guardarán los tests.
+```
+
+Después de revisar la respuesta, hacé clic en **Crear área de trabajo** y seleccioná la carpeta donde se encuentra este README. La estructura resultante es:
+
+```text
+performance/
+├── config/     # Opciones de prueba
+├── data/       # Archivos de datos
+├── reports/    # Reportes generados
+└── tests/      # Escenarios de prueba
+```
+
+> [!TIP]
+> El resultado depende de lo que hayas definido para la base de tu proyecto y de cómo quieras implementarlo. La variable `#new` devuelve el framework solicitado y genera el botón para crearlo en la carpeta actual.
+
+---
+
+## 💨 Paso 2. Smoke test (Prueba de humo)
+
+**Objetivo:** generar un smoke test con `#codebase` para que Copilot use como contexto la estructura creada antes, y luego analizar la respuesta.
+
+### 2.1 Prompt
+
+```text
+#codebase Crea un test con el nombre smoke-test.js en k6 para una prueba de humo que:
+1. Sea sobre la siguiente url: https://test.k6.io
+2. Configure 1 usuario
+3. La duración debe ser de 60 segundos
+4. El 95% de las solicitudes deben completarse en menos de 2s
+5. Valide que el código de respuesta sea 200
+6. El tiempo de respuesta inferior a 250ms.
+```
+
+### 2.2 Resultado
+
+Creá el archivo `smoke-test.js` en la carpeta `tests` y agregá el siguiente código:
+
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -170,62 +228,54 @@ export default function () {
     });
     sleep(1);
 }
-   ```
+```
 
-#### 2.3 ***Generamos el comando de ejecución del test usando el @workspace y el #file***
-Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
+### 2.3 Generar el comando de ejecución
 
-1. Enviar el siguiente promts:  
-  ```bash
-    @workspace Genera el comando de ejecución del archivo #file:smoke-test.js
-   ```
+```text
+#codebase Genera el comando de ejecución del archivo #file:smoke-test.js
+```
 
-2. ####  Respuesta de Copilot:
- ```bash
+**Respuesta de Copilot:**
+
+```bash
 k6 run performance/tests/smoke-test.js
-   ```  
+```
 
-Como podemos observar en esta respuesta, la IA nos ha generado el comando de ejecución del archivo que acabamos de crear en el paso anterior, por lo que podemos proceder a copiar el comando y pegarlo en nuestra terminal para ejecutar el test.
-Para ejecutar el comando podemos hacer copiar y pegarlo en la terminal o tambien podemos hacer click dentro del icono de la terminal dentro de la respuesta y esto nos insertara de manera automatica dicho comando para su ejecución.
-![img.png](img.png)
+> [!TIP]
+> Podés copiar el comando en la terminal, o hacer clic en el ícono de terminal dentro de la respuesta para insertarlo automáticamente.
 
+---
 
-### 2.4 **Creación de Casos de prueba de tipo Load Test:**
-Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
+## 📈 Paso 3. Load test (Prueba de carga)
 
-Con este paso vamos  indicarle que nos genere un test de tipo load, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
+**Objetivo:** generar una prueba de carga con etapas de subida/mantenimiento/bajada y un body POST dinámico.
 
-1. Enviar el siguiente promts:
+### 3.1 Prompt
 
-  ```bash
-@workspace Crea un test con el nombre load -test.js en k6 que:
-      1. Configure las siguientes etapas:
-      2. 60 segundos de duración con un objetivo de 10 usuarios.
-      3. 120 segundos de duración manteniendo 10 usuarios.
-      4. 60 segundos de duración reduciendo a 0 usuarios.
-      5. Realice una solicitud POST a la URL:  https://jsonplaceholder.typicode.com/posts/ 
-      6. Que se envíe el siguiente body en cada una de las solicitudes:
+```text
+#codebase Crea un test con el nombre load-test.js en k6 que:
+1. Configure las siguientes etapas:
+2. 60 segundos de duración con un objetivo de 10 usuarios.
+3. 120 segundos de duración manteniendo 10 usuarios.
+4. 60 segundos de duración reduciendo a 0 usuarios.
+5. Realice una solicitud POST a la URL: https://jsonplaceholder.typicode.com/posts/
+6. Que se envíe el siguiente body en cada una de las solicitudes:
 {
     "userId": ${userId},
     "title": "${title}",
     "body": "${body}"
 }
-      7. Que los valores de userId, title y body sean dinámicos para cada unos de los usuarios de esta prueba.
-      8. Incluya un tiempo de espera de 1 segundo después de la solicitud.
-      9. Validamos el código de respuesta sea 201
-      10. El tiempo de respuesta inferior a 350ms.
-      11. El 97% de las solicitudes deben completarse en menos de 2s 
-
+7. Que los valores de userId, title y body sean dinámicos para cada uno de los usuarios de esta prueba.
+8. Incluya un tiempo de espera de 1 segundo después de la solicitud.
+9. Valide que el código de respuesta sea 201
+10. El tiempo de respuesta inferior a 350ms.
+11. El 97% de las solicitudes deben completarse en menos de 2s
 ```
 
-2. ####  Respuesta de Copilot:
+### 3.2 Resultado
 
-**Código**
-Claro, aquí tienes el código para el archivo load-test.js en la carpeta tests de tu proyecto:
-
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
@@ -265,56 +315,42 @@ export default function () {
     sleep(1); // tiempo de espera de 1 segundo después de la solicitud
 }
 ```
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promts.
-- Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
-- El porcentaje de solicitudes deben completarse en menos de 2s.
-- Que incluya un tiempo de espera entre las solicitudes.
-- Que agrego la validacion del status code y que el tiempo de respuesta es de 350ms.
-- Genero un metodo para generar valores dinamicos para los campos userId, title y body.
-- Se envie un body en cada una de las solicitudes diferente para cada usuario.
 
-3. Generamos el comando de ejecución del test usando el @workspace y el #file
-Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
+### 3.3 Generar el comando de ejecución
 
-1. [x] Enviar el siguiente promts:
-  ```bash
-    @workspace Genera el comando de ejecución del archivo #file:load-test.js
-   ```
+```text
+#codebase Genera el comando de ejecución del archivo #file:load-test.js
+```
 
-2. [x] Respuesta de Copilot:
- ```bash
+**Respuesta de Copilot:**
+
+```bash
 k6 run performance/tests/load-test.js
-   ```
+```
 
-### 2.5 **Creación de Casos de prueba de tipo Stress Test:**
-Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
+---
 
-Con este paso vamos  indicarle que nos genere un test de tipo Stress, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
+## 🔥 Paso 4. Stress test (Prueba de estrés)
 
-1. Enviar el siguiente promts:
+**Objetivo:** llevar el sistema más allá de la carga normal con una etapa sostenida de 20 usuarios.
 
-  ```bash
-@workspace Crea un test con el nombre stress-test.js en k6 que:
+### 4.1 Prompt
+
+```text
+#codebase Crea un test con el nombre stress-test.js en k6 que:
 1. Configure las siguientes etapas:
     - 60 segundos de duración con un objetivo de 20 usuarios.
     - 180 segundos de duración manteniendo 20 usuarios.
     - 30 segundos de duración reduciendo a 0 usuarios.
 2. Realice una solicitud GET a la URL: https://test-api.k6.io
 3. Incluya un tiempo de espera de 1 segundo después de la solicitud.
-4. Validamos el código de respuesta sea 200 
-5. El tiempo de respuesta inferior a 250ms.       
+4. Valide que el código de respuesta sea 200
+5. El tiempo de respuesta inferior a 250ms.
 ```
 
-2. ####  Respuesta de Copilot:
+### 4.2 Resultado
 
-Código
-Crear el archivo smoke-test.js en la carpeta tests de tu proyecto. Luego, agrega el siguiente código:
-
-
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -330,69 +366,56 @@ export default function () {
     const res = http.get('https://test-api.k6.io');
     check(res, {
         'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 350ms': (r) => r.timings.duration < 250, // tiempo de respuesta inferior a 350ms
+        'response time is less than 250ms': (r) => r.timings.duration < 250, // tiempo de respuesta inferior a 250ms
     });
     sleep(1); // tiempo de espera de 1 segundo después de la solicitud
 }
 ```
 
-3. Generamos el comando de ejecución del test usando el @workspace y el #file
-Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
-1. [x] Enviar el siguiente promts:
-  ```bash
-    @workspace Genera el comando de ejecución del archivo #file:stress-test.js
-   ```
-2. [x] Respuesta de Copilot:
- ```bash
+### 4.3 Generar el comando de ejecución
+
+```text
+#codebase Genera el comando de ejecución del archivo #file:stress-test.js
+```
+
+**Respuesta de Copilot:**
+
+```bash
 k6 run performance/tests/stress-test.js
-   ```
-4. Reflexiones sobre el ejercicio:
+```
 
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promts.
-- Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
-- El porcentaje de solicitudes deben completarse en menos de 2s.
-- Que incluya un tiempo de espera entre las solicitudes.
-- Que agrego la validacion del status code y que el tiempo de respuesta es de 250ms.
+---
 
-### 2.6 **Creación de Casos de prueba de tipo Spike Test:**
-Utilizaremos la estructura creada anteriormente, para solicitar la generación de un caso de prueba mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
+## ⚡ Paso 5. Spike test (Prueba de picos)
 
-Con este paso vamos  indicarle que nos genere un test de tipo Spike, para lo cual le estaremos indicando todas las especificaciones necesarias y que se ajustan a nuestra necesidad.
-Acompañaremos este promts con el commands de GitHub Copilot @workspace para que tome el contexto de la estrutura que creamos en el paso anterior asi como de la lista de especificaciones
-debe de crear una caso de prueba de smoke test y vamos a analizar la respuesta que devuelve copilot.
+**Objetivo:** simular ráfagas de tráfico repentinas con ciclos repetidos de subida/bajada.
 
-1. Enviar el siguiente promts:
+### 5.1 Prompt
 
-  ```bash
-@workspace Crea un test con el nombre spike -test.js en k6 que:
-1.	Configure las siguientes etapas:
-2.	60 segundos de duración con un objetivo de 20 usuarios.
-3.	30 segundos de duración reduciendo 0 usuarios.
-4.	60 segundos de duración manteniendo 20 usuarios.
-5.	30 segundos de duración reduciendo 0 usuarios.
-6.	60 segundos de duración manteniendo 20 usuarios.
-7.	30 segundos de duración reduciendo 0 usuarios.
-8.	Realice una solicitud POST a la URL:  https://jsonplaceholder.typicode.com/posts/ 
-9.	Que se envíe el siguiente body en cada una de las solicitudes:
+```text
+#codebase Crea un test con el nombre spike-test.js en k6 que:
+1. Configure las siguientes etapas:
+2. 60 segundos de duración con un objetivo de 20 usuarios.
+3. 30 segundos de duración reduciendo a 0 usuarios.
+4. 60 segundos de duración manteniendo 20 usuarios.
+5. 30 segundos de duración reduciendo a 0 usuarios.
+6. 60 segundos de duración manteniendo 20 usuarios.
+7. 30 segundos de duración reduciendo a 0 usuarios.
+8. Realice una solicitud POST a la URL: https://jsonplaceholder.typicode.com/posts/
+9. Que se envíe el siguiente body en cada una de las solicitudes:
 {
     "userId": ${userId},
     "title": "${title}",
     "body": "${body}"
 }
-10.	Que los valores de userId, title y body sean dinámicos para cada unos de los usuarios de esta prueba.
-11.	Validamos el código de respuesta sea 201
-12.	El tiempo de respuesta inferior a 200ms.
-      
+10. Que los valores de userId, title y body sean dinámicos para cada uno de los usuarios de esta prueba.
+11. Valide que el código de respuesta sea 201
+12. El tiempo de respuesta inferior a 200ms.
 ```
 
-2. ####  Respuesta de Copilot:
+### 5.2 Resultado
 
-Código
-Crear el archivo smoke-test.js en la carpeta tests de tu proyecto. Luego, agrega el siguiente código:
-
-
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
@@ -436,46 +459,41 @@ export default function () {
 }
 ```
 
-3. Generamos el comando de ejecución del test usando el @workspace y el #file
-Con este paso vamos a generar solicitar a copilot que nos genere el comando de ejecución del archivo que acabamos de crear en el paso anterior.
-1. [x] Enviar el siguiente promts:
-  ```bash
-    @workspace Genera el comando de ejecución del archivo #file:spike-test.js
-   ```
-2. [x] Respuesta de Copilot:
- ```bash
+### 5.3 Generar el comando de ejecución
+
+```text
+#codebase Genera el comando de ejecución del archivo #file:spike-test.js
+```
+
+**Respuesta de Copilot:**
+
+```bash
 k6 run performance/tests/spike-test.js
 ```
-4. Reflexiones sobre el ejercicio:
 
-Como podemos observar la respuesta que nos ha sugerido con el siguiente test de carga o load, se corresponde con lo que hemos solicitado en el promts, por lo que podemos proceder a copiar el código y pegarlo en nuestro archivo de test.
-- Podemos detallar que refiere a la URL que le indicamos en el promts.
-- Que esta configurado para la cantidad de usuarios que le indicamos por tiempo de duración.
-- Que agrego la validacion del status code y que el tiempo de respuesta es de 200ms.
+---
 
+## ⚙️ Paso 6. Archivo de configuración central
 
-### 2.7 **Creación de archivo de configuración para los test de rendimiento:**
-Utilizaremos las pruebas creadas para crear un archivos de configuración, que agrupe en diferentes constantes los valores de los diferentes target de duración de cada test.
-También le solicitaremos que nos realice la modificación dentro de los test para que puede obtener del archivo de configuración esta información.
-***
+**Objetivo:** agrupar las opciones de duración/objetivo de cada prueba en un único archivo de configuración, y refactorizar cada test para que lo consuma.
 
-1. Enviar el siguiente promts:
-  ```bash
-   @workspace crear un archivo de configuración con el nombre config-test-options.js:
-1.  Dentro del directorio config donde puedes definir diferentes configuraciones de prueba para utilizar en los diferentes test que tenemos #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js para:
-2.	Crear una función con el nombre getTestOptions y que tenga una variable para enviarle el tipo de test con las configuraciones de duración por tipo de test.
-3.	Realizar la modificación en cada test de esta constante.
-   ```
+### 6.1 Prompt
 
-2. ####  Respuesta de Copilot:
+```text
+#codebase crear un archivo de configuración con el nombre config-test-options.js:
+1. Dentro del directorio config donde puedas definir diferentes configuraciones de prueba para utilizar en los diferentes tests que tenemos #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js para:
+2. Crear una función con el nombre getTestOptions y que tenga una variable para enviarle el tipo de test con las configuraciones de duración por tipo de test.
+3. Realizar la modificación en cada test de esta constante.
+```
 
-Claro, aquí tienes el código para el archivo `config-test-options.js` en la carpeta `config` de tu proyecto:
- ```bash
+### 6.2 Resultado — `config-test-options.js`
+
+```javascript
 // performance/config/config-test-options.js
 
 export const smokeTestOptions = {
     vus: 1, // 1 usuario
-    duration: '10s', // duración de 10 segundos
+    duration: '60s', // duración de 60 segundos
     thresholds: {
         http_req_duration: ['p(95)<2000'], // el 95% de las solicitudes deben completarse en menos de 2s
     },
@@ -524,11 +542,11 @@ export function getTestOptions(testType) {
 }
 ```
 
-Ahora, realiza la modificación en cada test para utilizar esta configuración:
+### 6.3 Refactorizar cada test para usar la configuración
 
-`smoke-test.js`
+**smoke-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -538,16 +556,16 @@ export const options = getTestOptions('smoke');
 export default function () {
     const res = http.get('https://test.k6.io');
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 250ms': (r) => r.timings.duration < 250, // tiempo de respuesta inferior a 250ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
     sleep(1);
 }
 ```
 
-`load-test.js`
+**load-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
@@ -560,32 +578,23 @@ export default function () {
     const title = randomString(10);
     const body = randomString(50);
 
-    const payload = JSON.stringify({
-        userId: userId,
-        title: title,
-        body: body,
-    });
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const payload = JSON.stringify({ userId, title, body });
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post('https://jsonplaceholder.typicode.com/posts', payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 350ms': (r) => r.timings.duration < 350,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
 
-`stress-test.js`
+**stress-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -595,16 +604,16 @@ export const options = getTestOptions('stress');
 export default function () {
     const res = http.get('https://test-api.k6.io');
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
 
-`spike-test.js`
+**spike-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
@@ -617,58 +626,42 @@ export default function () {
     const title = randomString(10);
     const body = randomString(50);
 
-    const payload = JSON.stringify({
-        userId: userId,
-        title: title,
-        body: body,
-    });
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const payload = JSON.stringify({ userId, title, body });
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post('https://jsonplaceholder.typicode.com/posts', payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 200ms': (r) => r.timings.duration < 200, // tiempo de respuesta inferior a 200ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 200ms': (r) => r.timings.duration < 200,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
-3.- Rexlexiones sobre el ejercicio:
 
-Como podemos observar nos ha sugerido la totalidad de la configuración que necesitamos para los test de rendimiento, asi como la modificación que debemos realizar en cada uno de los test para que pueda obtener del archivo de configuración esta información.
-De esta forma podremos ir agregando a nuestro entorno de trabajo la escalabilidad necesaria para un mantenimiento adecuando.
+> [!NOTE]
+> Copilot sugirió la totalidad de la configuración y la modificación que necesita cada test para leer del archivo de configuración — agregando escalabilidad y un mantenimiento más sencillo a tu framework.
 
+---
 
-### 2.8 **Creación de archivo de datos para los test de performance:**
-Solicitaremos a la IA que nos ayude a crear un archivo de datos dentro del directorio que corresponde para poder concentrar en un solo lugar los datos que necesitamos para realizar las pruebas, como por ejemplos los body de los request que vamos a realizar o las urls que utlicemos en los test.
-***
+## 🗃️ Paso 7. Archivo de datos
 
-1. Enviar el siguiente promts:
-  ```bash
- @workspace crear un archivo de datos con el nombre data-test.js:
-1.  Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js para:
-2.  Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request
-3.- Crear una constante para agrupar las diferentes urls que se utilizan en los test
-3.  Realizar la modificación en cada test de estas constantes.
-   ```
+**Objetivo:** centralizar en un único archivo de datos los cuerpos de las solicitudes y las URLs usadas en los tests.
 
-2. ####  Respuesta de Copilot:
+### 7.1 Prompt
 
-@workspace crear un archivo de datos con el nombre `data-test.js`:
+```text
+#codebase crear un archivo de datos con el nombre data-test.js:
+1. Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los tests #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js para:
+2. Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request
+3. Crear una constante para agrupar las diferentes urls que se utilizan en los tests
+4. Realizar la modificación en cada test de estas constantes.
+```
 
-1. Dentro del directorio data donde se pueda tener dentro una constante la configuración del body del request de los test `#file:smoke-test.js` `#file:load-test.js` `#file:stress-test.js` `#file:spike-test.js`
-2. Crear una función con el nombre getTestData y que tenga una variable para enviarle al test los datos del request 
-3. Crear una constante para agrupar las diferentes urls que se utilizan en los test
-Realizar la modificación en cada test de estas constantes.
+### 7.2 Resultado — `data-test.js`
 
-Claro, aquí tienes el código para el archivo `data-test.js` en la carpeta `data` de tu proyecto:
- ```bash
+```javascript
 // performance/data/data-test.js
 
 import { randomIntBetween, randomString } from 'https://jslib.k6.io/k6-utils/1.1.0/index.js';
@@ -693,11 +686,11 @@ export function getTestData() {
 }
 ```
 
-Ahora, realiza la modificación en cada test para utilizar esta configuración:
+### 7.3 Refactorizar cada test para usar el archivo de datos
 
-`smoke-test.js`
+**smoke-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -708,46 +701,41 @@ export const options = getTestOptions('smoke');
 export default function () {
     const res = http.get(urls.smokeTestUrl);
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 250ms': (r) => r.timings.duration < 250, // tiempo de respuesta inferior a 250ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
     sleep(1);
 }
 ```
 
-`load-test.js`
+**load-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
-import { getTestData, urls } from '../data/data-test.js';
+import { urls, getTestData } from '../data/data-test.js';
 
 export const options = getTestOptions('load');
 
 export default function () {
     const payload = getTestData();
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post(urls.loadTestUrl, payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 350ms': (r) => r.timings.duration < 350,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
 
-`stress-test.js`
+**stress-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -758,68 +746,63 @@ export const options = getTestOptions('stress');
 export default function () {
     const res = http.get(urls.stressTestUrl);
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
 
-`spike-test.js`
+**spike-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
-import { getTestData, urls } from '../data/data-test.js';
+import { urls, getTestData } from '../data/data-test.js';
 
 export const options = getTestOptions('spike');
 
 export default function () {
     const payload = getTestData();
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post(urls.spikeTestUrl, payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 200ms': (r) => r.timings.duration < 200, // tiempo de respuesta inferior a 200ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 200ms': (r) => r.timings.duration < 200,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 ```
-3.- Rexlexiones sobre el ejercicio:
 
-Como podemos observar nos ha sugerido en la solución propuesta variabilizar el body de los request de los test, asi como las urls que se utilizan, de esta forma podremos ir agregando a nuestro entorno de trabajo la escalabilidad necesaria para un mantenimiento adecuando.
+> [!NOTE]
+> La solución propuesta variabiliza el body de las solicitudes y las URLs de los tests — así podés ir agregando a tu entorno de trabajo la escalabilidad necesaria para un mantenimiento adecuado.
 
+---
 
-### 2.9 **Configuración de reportes para los test de rendimiento**
-Utilizaremos los test creados para configurar los reportes mediante la utilización de Github Copilot dentro de nuestro marco de trabajo.
+## 📊 Paso 8. Configurar reportes
 
-Con este paso vamos a realizar la consulta para agregar la configuración de los reportes.
-  
-  ```bash
-  @workspace configura el reporte htmlReport y textSummary:
-1.	En los diferentes test #file:smoke-test.js  #file:load-test.js #file:stress-test.js #file:spike-test.js 
-2.	El output del reporte se muestre en el directorio reports
-3.  El nombre del reporte que incluya la fecha de ejecución
+**Objetivo:** agregar salidas `htmlReport` y `textSummary` a cada test para que los reportes se generen en el directorio `reports/` con la fecha de ejecución en el nombre del archivo.
 
-   ```
+### 8.1 Prompt
 
-- ####  Respuesta de Copilot:
+```text
+#codebase configura el reporte htmlReport y textSummary:
+1. En los diferentes tests #file:smoke-test.js #file:load-test.js #file:stress-test.js #file:spike-test.js
+2. El output del reporte se muestre en el directorio reports
+3. El nombre del reporte que incluya la fecha de ejecución
+```
 
-Claro, aquí tienes la configuración del reporte `htmlReport` y `textSummary` en los diferentes tests para que la salida del reporte se muestre en el directorio `reports`:
-Ahora, realiza la modificación en cada test para utilizar esta configuración:
+### 8.2 Resultado
 
-`smoke-test.js`
+Cada test importa los helpers del reporter y agrega una función `handleSummary`.
 
- ```bash
+**smoke-test.js**
+
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -832,27 +815,28 @@ export const options = getTestOptions('smoke');
 export default function () {
     const res = http.get(urls.smokeTestUrl);
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 250ms': (r) => r.timings.duration < 250, // tiempo de respuesta inferior a 250ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
     sleep(1);
 }
 
 export function handleSummary(data) {
+    const date = new Date().toISOString().slice(0, 10);
     return {
-        'performance/reports/smoke-summary.html': htmlReport(data),
-        'performance/reports/smoke-summary.txt': textSummary(data),
+        [`performance/reports/smoke-summary-${date}.html`]: htmlReport(data),
+        [`performance/reports/smoke-summary-${date}.txt`]: textSummary(data, { indent: ' ', enableColors: false }),
     };
 }
 ```
 
-`load-test.js`
+**load-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
-import { getTestData, urls } from '../data/data-test.js';
+import { urls, getTestData } from '../data/data-test.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
@@ -860,35 +844,30 @@ export const options = getTestOptions('load');
 
 export default function () {
     const payload = getTestData();
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post(urls.loadTestUrl, payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 350ms': (r) => r.timings.duration < 350,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 
 export function handleSummary(data) {
+    const date = new Date().toISOString().slice(0, 10);
     return {
-        'performance/reports/load-summary.html': htmlReport(data),
-        'performance/reports/load-summary.txt': textSummary(data),
+        [`performance/reports/load-summary-${date}.html`]: htmlReport(data),
+        [`performance/reports/load-summary-${date}.txt`]: textSummary(data, { indent: ' ', enableColors: false }),
     };
 }
 ```
 
+**stress-test.js**
 
-`stress-test.js`
-
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
@@ -901,27 +880,28 @@ export const options = getTestOptions('stress');
 export default function () {
     const res = http.get(urls.stressTestUrl);
     check(res, {
-        'status is 200': (r) => r.status === 200, // validamos el código de respuesta 200
-        'response time is less than 350ms': (r) => r.timings.duration < 350, // tiempo de respuesta inferior a 350ms
+        'status is 200': (r) => r.status === 200,
+        'response time is less than 250ms': (r) => r.timings.duration < 250,
     });
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 
 export function handleSummary(data) {
+    const date = new Date().toISOString().slice(0, 10);
     return {
-        'performance/reports/stress-summary.html': htmlReport(data),
-        'performance/reports/stress-summary.txt': textSummary(data),
+        [`performance/reports/stress-summary-${date}.html`]: htmlReport(data),
+        [`performance/reports/stress-summary-${date}.txt`]: textSummary(data, { indent: ' ', enableColors: false }),
     };
 }
 ```
 
-`spike-test.js`
+**spike-test.js**
 
- ```bash
+```javascript
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 import { getTestOptions } from '../config/config-test-options.js';
-import { getTestData, urls } from '../data/data-test.js';
+import { urls, getTestData } from '../data/data-test.js';
 import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
@@ -929,32 +909,34 @@ export const options = getTestOptions('spike');
 
 export default function () {
     const payload = getTestData();
-
-    const params = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const params = { headers: { 'Content-Type': 'application/json' } };
 
     const res = http.post(urls.spikeTestUrl, payload, params);
 
     check(res, {
-        'status is 201': (r) => r.status === 201, // validamos el código de respuesta 201
-        'response time is less than 200ms': (r) => r.timings.duration < 200, // tiempo de respuesta inferior a 200ms
+        'status is 201': (r) => r.status === 201,
+        'response time is less than 200ms': (r) => r.timings.duration < 200,
     });
 
-    sleep(1); // tiempo de espera de 1 segundo después de la solicitud
+    sleep(1);
 }
 
 export function handleSummary(data) {
+    const date = new Date().toISOString().slice(0, 10);
     return {
-        'performance/reports/spike-summary.html': htmlReport(data),
-        'performance/reports/spike-summary.txt': textSummary(data),
+        [`performance/reports/spike-summary-${date}.html`]: htmlReport(data),
+        [`performance/reports/spike-summary-${date}.txt`]: textSummary(data, { indent: ' ', enableColors: false }),
     };
 }
 ```
-3.- Rexlexiones sobre el ejercicio:
 
-Como podemos observar nos ha sugerido en la solución propuesta la configuración de los reportes para los test de rendimiento, asi como la modificación que debemos realizar en cada uno de los test para que pueda obtener del archivo de configuración esta información.
+---
 
-***
+## 🧭 Reflexiones finales
+
+- Copilot sugirió la configuración de los reportes y la modificación que necesita cada test para consumir la configuración y los datos compartidos.
+- Centralizar opciones, datos y reportes agrega la **escalabilidad** necesaria para un mantenimiento adecuado de tu framework de rendimiento.
+- La calidad de tu prompt determina la calidad de la prueba generada — **siempre revisá y adaptá** el resultado a tus necesidades.
+
+> [!IMPORTANT]
+> `#new`, `#codebase` y `#file` reemplazan al participante heredado `@workspace`. Usá `#new` para hacer scaffolding, `#codebase` para trabajar con todo el proyecto como contexto, y `#file` para apuntar a un archivo específico.
