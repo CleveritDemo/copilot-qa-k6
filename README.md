@@ -49,7 +49,7 @@
 
 Al finalizar este taller serás capaz de:
 
-- ✅ Generar una **estructura de proyecto k6** organizada con GitHub Copilot usando la variable `#new`.
+- ✅ Generar una **estructura de proyecto k6** organizada con GitHub Copilot usando la variable `#newWorkspace`.
 - ✅ Crear cuatro tipos de pruebas de rendimiento — **Smoke, Load, Stress, Spike** — a partir de prompts en lenguaje natural.
 - ✅ Generar el **comando de ejecución** de cada prueba usando `#codebase` y `#file`.
 - ✅ Centralizar las opciones de prueba en un **archivo de configuración** (`config-test-options.js`).
