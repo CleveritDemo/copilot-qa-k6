@@ -130,7 +130,7 @@ Este taller usa las **variables de chat** modernas de GitHub Copilot en lugar de
 
 | Variable     | Qué hace                                                                                        |
 | ------------ | ----------------------------------------------------------------------------------------------- |
-| `#new`       | Genera (scaffolding) una **nueva estructura de proyecto/workspace** a partir de tu descripción.  |
+| `#newWorkspace`       | Genera (scaffolding) una **nueva estructura de proyecto/workspace** a partir de tu descripción.  |
 | `#codebase`  | Le da a Copilot **todo el workspace como contexto** para crear o modificar archivos.            |
 | `#file`      | Referencia un **archivo específico** (por ej. `#file:smoke-test.js`) para que Copilot trabaje sobre él. |
 
@@ -166,7 +166,7 @@ Necesito crear una estructura de directorios organizada para utilizar en un proy
 Usá la variable **`#new`** para que Copilot genere el proyecto y ofrezca un botón **Crear área de trabajo**. Enviá el siguiente prompt:
 
 ```text
-#new Necesito crear una estructura de directorios organizada para generar un proyecto de performance con k6 de la siguiente forma:
+#newWorkspace Necesito crear una estructura de directorios organizada para generar un proyecto de performance con k6 de la siguiente forma:
     1. performance: Carpeta principal del proyecto
     2. config: Carpeta donde se guardarán las opciones de prueba.
     3. data: Carpeta donde se guardarán los archivos de datos.
