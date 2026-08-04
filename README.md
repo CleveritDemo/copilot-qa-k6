@@ -1,4 +1,5 @@
 <div align="center">
+<img src="./assets/header.png" alt="GitHub Copilot - Programa de Adopción" width="100%" />
 
   # 🚀 Copilot QA — Framework de Pruebas de Rendimiento con k6
 
