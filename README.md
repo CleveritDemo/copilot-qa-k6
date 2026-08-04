@@ -161,9 +161,9 @@ Necesito crear una estructura de directorios organizada para utilizar en un proy
 > [!NOTE]
 > La respuesta es una propuesta *tentativa*. Suele tener sentido, pero rara vez coincide con el layout exacto que tenés en mente. Por eso el siguiente paso define la estructura de forma explícita.
 
-### 1.2 Scaffolding con la variable `#new`
+### 1.2 Scaffolding con la variable `#newWorkspace`
 
-Usá la variable **`#new`** para que Copilot genere el proyecto y ofrezca un botón **Crear área de trabajo**. Enviá el siguiente prompt:
+Usá la variable **`#newWorkspace`** para que Copilot genere el proyecto y ofrezca un botón **Crear área de trabajo**. Enviá el siguiente prompt:
 
 ```text
 #newWorkspace Necesito crear una estructura de directorios organizada para generar un proyecto de performance con k6 de la siguiente forma:
